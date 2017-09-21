@@ -1,0 +1,42 @@
+version: '2'
+services:
+  db_invites_fr:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: invites_user
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: invites_db
+      MYSQL_HOST: db_invites_fr
+    volumes:
+      - db_invites_fr:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db_invites_fr:db_invites_fr
+    environment:
+      PMA_HOST: db_invites_fr
+      PMA_ARBITRARY: 1
+      MYSQL_USER: invites_user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - '8001:80'
+  ms_invites_fr:
+    build: .
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - '3080:80'
+    depends_on:
+      - db_invites_fr
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+volumes:
+  db_invites_fr:
+    driver: "local"

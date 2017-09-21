@@ -1,0 +1,17 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#RewriteRule ^(.*)$ %{ENV:BASE}controller.php [QSA,L]
+
+# Para metodo GET, POST 
+#RewriteRule ^([a-zA-Z]+)$ %{ENV:BASE}controller.php [QSA,L]
+#RewriteRule ^([a-zA-Z]+)/$ %{ENV:BASE}controller.php [QSA,L]
+RewriteRule ^invitaciones$ %{ENV:BASE}controller.php [QSA,L]
+RewriteRule ^invitaciones/$ %{ENV:BASE}controller.php [QSA,L]
+
+# Para metodo GET por Id 
+#RewriteRule ^api/([a-zA-Z]+)/([0-9]+)$ %{ENV:BASE}controller.php [QSA,L]
+#RewriteRule ^api/([a-zA-Z]+)/([0-9]+)/$ %{ENV:BASE}controller.php [QSA,L]
+RewriteRule ^invitaciones/([0-9]+)$ %{ENV:BASE}controller.php [QSA,L]
+RewriteRule ^invitaciones/([0-9]+)/$ %{ENV:BASE}controller.php [QSA,L]
