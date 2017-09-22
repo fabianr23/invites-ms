@@ -1,6 +1,6 @@
 <?php
  // Dirección del servidor de Base de datos
- define("DB_HOST", "db_invites_fr");
+ define("DB_HOST", "db_invites");
 
  // Nombre de usuario de Base de datos
  define("DB_USER", "invites_user");
